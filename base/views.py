@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
@@ -45,6 +45,7 @@ class TodoList(generics.ListAPIView):
 
 class TodoListCreate(generics.ListCreateAPIView):
     serializer_class = TodoSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
