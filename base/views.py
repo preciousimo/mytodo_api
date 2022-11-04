@@ -90,7 +90,7 @@ def signup(request):
             user.save()
             
             token = Token.objects.create(user=user)
-            return JsonResponse({'token':str(token)},status=201)
+            return JsonResponse({'token':str(token)}, status=201)
         except IntegrityError:
             return JsonResponse(
                 {'error':'username taken. choose another username'}, status=400
