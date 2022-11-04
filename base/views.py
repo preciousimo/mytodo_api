@@ -34,9 +34,17 @@ from .models import Todo
         
 #         return Response(serializer.data)
 
+#   ---- CLASS BASED VIEW (View the API list endpoint) ----
 class TodoList(generics.ListAPIView):
     serializer_class = TodoSerializer
     
+    def get_queryset(self):
+        user = self.request.user
+        
+        return Todo.objects.filter(user=user).order_by('-created')
+
+class TodoListCreate(generics.ListCreateAPIView):
+    serializer_class = TodoSerializer
     def get_queryset(self):
         user = self.request.user
         
