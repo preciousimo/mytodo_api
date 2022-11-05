@@ -16,6 +16,11 @@ from .serializers import TodoSerializer, TodoToggleCompleteSerializer
 from .models import Todo
 
 #   ---- FUNCTION BASED VIEW (View the API list endpoint) ----
+@api_view(['GET'])
+def endpoints(request):
+    data = ['/todos', '/create', '/todo/pk', '/todo/pk/complete']
+    return Response(data)
+
 # @api_view(['GET', 'POST'])
 # def todo_list(request): 
     
